@@ -19,7 +19,7 @@ app.use(express.json()); //to accept json data
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   //   console.log(req);
   res.json({
     message: `Welcome to Temp project server Server ${process.env.HOME_KEY}`,
