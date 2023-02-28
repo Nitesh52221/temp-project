@@ -4,7 +4,7 @@ import axios from "axios";
 const Home = () => {
   const [message, setMessage] = useState("");
   const welcome = async () => {
-    const res = await axios.get("http://localhost:4000");
+    const res = await axios.get("http://localhost:4000/home");
     setMessage(res.data.message);
     console.log(res);
   };
