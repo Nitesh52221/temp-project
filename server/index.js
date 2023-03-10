@@ -19,6 +19,21 @@ app.use(helmet());
 app.use(express.json()); //to accept json data
 
 app.use(express.json());
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+
+  app.use(express.static(path.resolve(__dirname, "client", "build")));
+  app.get("/", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "client", "build", "index.html"),
+      function (err) {
+        if (err) {
+          res.status(500).send(err);
+        }
+      }
+    );
+  });
+}
 
 app.get("/home", (req, res) => {
   //   console.log(req);
@@ -50,22 +65,6 @@ app.get("/about", (req, res) => {
 
 // app.use(notFound);
 // app.use(errorHandler);
-
-if (process.env.NODE_ENV === "production") {
-  const path = require("path");
-
-  app.use(express.static(path.resolve(__dirname, "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "client", "build", "index.html"),
-      function (error) {
-        if (err) {
-          res.status(500).send(err);
-        }
-      }
-    );
-  });
-}
 
 // const PORT = process.env.PORT || 4000;
 
