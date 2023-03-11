@@ -4,7 +4,7 @@ import axios from "axios";
 const About = () => {
   const [message, setMessage] = useState("");
   const welcome = async () => {
-    const res = await axios.get("https://temp-t383.onrender.com/about");
+    const res = await axios.get("https://temp-project-server.vercel.app/about");
     setMessage(res.data.message);
     console.log(res);
   };
