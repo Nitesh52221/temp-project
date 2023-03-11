@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 // connectDB();
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "https://temp-project-ok3f.vercel.app/" }));
 app.use(helmet());
 app.use(express.json()); //to accept json data
 

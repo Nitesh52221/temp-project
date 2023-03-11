@@ -4,7 +4,7 @@ import axios from "axios";
 const About = () => {
   const [message, setMessage] = useState("");
   const welcome = async () => {
-    const res = await axios.get("http://localhost:4000/about");
+    const res = await axios.get("https://temp-t383.onrender.com/about");
     setMessage(res.data.message);
     console.log(res);
   };
