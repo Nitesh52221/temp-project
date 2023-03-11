@@ -10,7 +10,7 @@ const Home = () => {
   };
   return (
     <div>
-      <button onClick={() => welcome}>Click to get welcome msg</button>
+      <button onClick={welcome}>Click to get welcome msg</button>
       <h1>{message}</h1>
     </div>
   );
