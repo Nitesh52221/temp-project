@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const helmet = require("helmet");
-const { HOME_KEY, ABOUT_KEY, PORT } = require("../config/keys");
+// const { HOME_KEY, ABOUT_KEY, PORT } = require("../config/keys");
 
 // const chatRoutes = require("./routes/chatRoutes");
 // const userRoutes = require("./routes/userRoutes");
@@ -19,32 +19,22 @@ app.use(helmet());
 app.use(express.json()); //to accept json data
 
 app.use(express.json());
-if (process.env.NODE_ENV === "production") {
-  const path = require("path");
 
-  app.use(express.static(path.resolve(__dirname, "client", "build")));
-  app.get("/", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "client", "build", "index.html"),
-      function (err) {
-        if (err) {
-          res.status(500).send(err);
-        }
-      }
-    );
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to the temp project",
   });
-}
-
+});
 app.get("/home", (req, res) => {
   //   console.log(req);
   res.json({
-    message: `Welcome to Temp project server Server ${HOME_KEY}`,
+    message: `Welcome to Temp project server Server ${process.env.HOME_KEY}`,
   });
 });
 app.get("/about", (req, res) => {
   //   console.log(req);
   res.json({
-    message: `This is Temp Project to make temporary project ${ABOUT_KEY} `,
+    message: `This is Temp Project to make temporary project ${process.env.ABOUT_KEY} `,
   });
 });
 
@@ -68,8 +58,10 @@ app.get("/about", (req, res) => {
 
 // const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
-  console.log(`Server is Running on PORT: http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(
+    `Server is Running on PORT: http://localhost:${process.env.PORT}`
+  );
 });
 
 module.export = app;
